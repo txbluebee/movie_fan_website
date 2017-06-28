@@ -1,0 +1,28 @@
+<div class="movie-details">
+  <img src=" <%= @movie.image %>" alt="" / width='100px'>
+  <h1><%= @movie.name %> </h1>
+  <p> Genre: <%= @movie.genre %></p>
+  <p> Actors: <%= @movie.actors %></p>
+
+
+  <%= link_to 'Edit Movie', edit_movie_path, :class => 'btn btn-success'  %>
+  <%= link_to 'Delete Movie', movie_path(@movie), :method =>'delete', :data => {:confirm => 'You sure?'}, :class => 'btn btn-danger'%>
+
+  <% if @movie.reviews.any? %>
+
+    <% @movie.reviews.each do |review| %>
+      <div class="review-body">
+        <h5>Author: <%= review.author %></h5>
+        <h5>Rating: <%= review.rating %></h5>
+        <p>
+          <%= review.content %>
+        </p>
+        <%= link_to 'Edit Review', edit_movie_review_path(@movie, review), :class => 'btn btn-warning btn-sm' %>
+        <%= link_to 'Delete Review', movie_review_path(@movie, review), :method =>'delete', :data => {:confirm => 'You sure?'}, :class => 'btn btn-danger btn-sm'%>
+
+      </div>
+    <% end %>
+  <% else %>
+    <h1>No reviews yet</h1>
+  <% end %>
+</div>
