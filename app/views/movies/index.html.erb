@@ -1,7 +1,33 @@
 <h1>Movies</h1>
 
+<div class="feature-movie">
+  <h2>Featured Movie</h2>
+  <% @random_movies.each do |random_movie|%>
+    <li><%= random_movie.name %></li>
+  <% end %>
+</div>
+
+
+
 <ul>
   <% @movies.each do |movie| %>
+    <li><%= link_to movie.name, movie_path(movie) %> - <%= movie.actors %> </li>
+  <% end %>
+</ul>
+
+<h2>Sort By Alpha</h2>
+
+<ul>
+  <% @movies.sort_by_alpha.each do |movie| %>
+    <li><%= link_to movie.name, movie_path(movie) %> - <%= movie.actors %> </li>
+  <% end %>
+</ul>
+
+
+<h2>10 Most recent movies</h2>
+
+<ul>
+  <% @movies.most_recent.each do |movie| %>
     <li><%= link_to movie.name, movie_path(movie) %> - <%= movie.actors %> </li>
   <% end %>
 </ul>

@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @random_movies = Movie.order('RANDOM()').limit(5)
   end
 
   def show
@@ -48,5 +49,9 @@ class MoviesController < ApplicationController
   private
     def movie_params
       params.require(:movie).permit(:name, :actors, :genre, :image)
+    end
+
+    def find_movie
+      @movie = Movie.find(params[:id])
     end
 end
