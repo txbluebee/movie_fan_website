@@ -1,19 +1,30 @@
-<h1>Movies</h1>
+<h1>Feature Movies</h1>
 
 <div class="feature-movie">
-  <h2>Featured Movie</h2>
   <% @random_movies.each do |random_movie|%>
     <li><%= random_movie.name %></li>
   <% end %>
 </div>
 
+<hr>
 
+<h1>All movies</h1>
 
 <ul>
   <% @movies.each do |movie| %>
     <li><%= link_to movie.name, movie_path(movie) %> - <%= movie.actors %> </li>
   <% end %>
 </ul>
+
+<hr>
+
+<h1>Most Reviews</h1>
+<ul>
+  <% @movies.most_reviews.each do |movie| %>
+    <li><%= link_to movie.name, movie_path(movie) %></li>
+  <% end %>
+</ul>
+<hr>
 
 <h2>Sort By Alpha</h2>
 
@@ -23,6 +34,7 @@
   <% end %>
 </ul>
 
+<hr>
 
 <h2>10 Most recent movies</h2>
 
@@ -32,4 +44,21 @@
   <% end %>
 </ul>
 
+<!-- <h2>Movies without reviews</h2>
+
+<ul>
+  <% @movies.no_review.each do |movie| %>
+    <li><%= link_to movie.name, movie_path(movie) %> </li>
+  <% end %>
+</ul> -->
+
 <%= link_to 'add new movie', new_movie_path, :class => 'btn btn-success'%>
+ <hr>
+
+ <h1>User who written most reviews</h1>
+  <ul>
+    <%= @reviews.user_write_most_reviews.each do |review|  %>
+    <li><%= review.author %></li>
+ </ul>
+
+ <% end %>

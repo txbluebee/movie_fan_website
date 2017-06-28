@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @reviews = Review.all
     @random_movies = Movie.order('RANDOM()').limit(5)
   end
 
@@ -43,7 +44,6 @@ class MoviesController < ApplicationController
     @movie.destroy
     redirect_to movies_path
   end
-
 
 
   private

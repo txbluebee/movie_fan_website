@@ -4,4 +4,20 @@ class Movie < ApplicationRecord
   scope :sort_by_alpha, -> {order(:name)}
   # scope :sort_by_alpha, -> {order(name: :desc)}
   scope :most_recent, -> { order(created_at: :desc).limit(10)}
+
+  scope :most_reviews, -> {(
+    select("movies.name, movies.id, count(reviews.id) as reviews_count")
+    .joins(:reviews)
+    .group("movies.id")
+    .order("reviews_count DESC")
+    .limit(5)
+    )}
+
+  # scope :no_review, -> {(where(:reviews => nil))}
+  # scope :no_review, -> {(
+  #   select("movies.name, movies.id, count(reviews.id) as reviews_count")
+  #   .joins(:reviews)
+  #   .group("movies.id")
+  #   .where(movie.reviews => nil )
+  #   )}
 end

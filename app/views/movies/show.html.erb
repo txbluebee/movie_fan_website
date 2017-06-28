@@ -1,8 +1,16 @@
 <div class="movie-details">
   <img src=" <%= @movie.image %>" alt="" / width='100px'>
   <h1><%= @movie.name %> </h1>
+  <p>Average User Rating:
+      <% if @movie.reviews.any? %>
+        <%= @movie.reviews.average(:rating).round(1) %>
+      <% else %>
+        No reviews yet!
+      <% end %>
+  </p>
   <p> Genre: <%= @movie.genre %></p>
   <p> Actors: <%= @movie.actors %></p>
+
 
 
   <%= link_to 'Edit Movie', edit_movie_path, :class => 'btn btn-success'  %>
