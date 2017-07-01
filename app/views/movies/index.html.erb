@@ -44,20 +44,13 @@
   <% end %>
 </ul>
 
-<!-- <h2>Movies without reviews</h2>
-
-<ul>
-  <% @movies.no_review.each do |movie| %>
-    <li><%= link_to movie.name, movie_path(movie) %> </li>
-  <% end %>
-</ul> -->
 
 <%= link_to 'add new movie', new_movie_path, :class => 'btn btn-success'%>
  <hr>
 
  <h1>User who written most reviews</h1>
   <ul>
-    <%= @reviews.user_write_most_reviews.each do |review|  %>
+    <% @reviews.user_write_most_reviews.each do |review|  %>
     <li><%= review.author %></li>
  </ul>
 
